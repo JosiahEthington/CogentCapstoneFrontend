@@ -22,6 +22,7 @@ import { AdminCreateStaffComponent } from './admin-create-staff/admin-create-sta
 import { AdminEnableStaffComponent } from './admin-enable-staff/admin-enable-staff.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FormsModule } from '@angular/forms';
     StaffApproveBeneficiaryComponent,
     AdminCreateStaffComponent,
     AdminEnableStaffComponent,
+    UpdatePasswordComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

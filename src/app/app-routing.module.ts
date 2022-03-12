@@ -17,6 +17,7 @@ import { AdminCreateStaffComponent } from './admin-create-staff/admin-create-sta
 import { AdminEnableStaffComponent } from './admin-enable-staff/admin-enable-staff.component';
 import { StaffLoginPageComponent } from './staff-login-page/staff-login-page.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'register', component: RegistrationPageComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'adminEnableStaff', component: AdminEnableStaffComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'staffLogin', component: StaffLoginPageComponent },
+  { path: 'updatePassword', component: UpdatePasswordComponent },
 ];
 
 @NgModule({
