@@ -47,7 +47,9 @@ const routes: Routes = [
   { path: 'adminEnableStaff', component: AdminEnableStaffComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'staffLogin', component: StaffLoginPageComponent },
+
   { path: 'updatePassword', component: UpdatePasswordComponent },
+
 ];
 
 @NgModule({
