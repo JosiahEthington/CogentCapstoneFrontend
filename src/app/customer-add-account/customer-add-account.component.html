@@ -1,1 +1,61 @@
 <p>customer-add-account works!</p>
+<h1>Create Account</h1>
+​
+<table>
+  <tr>
+    <td>
+      <input
+        type="text"
+        name="createAccount"
+        placeholder="Create Account"
+        [(ngModel)]="CreateAccountRequest.createAccount"
+      />
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <input
+        type="button"
+        value="Create Account"
+        (click)="createAccount()"
+      /><br />
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <input
+        type="button"
+        value="Add beneficiary"
+        (click)="addBeneficiary()"
+      /><br />
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <input
+        type="button"
+        value="Remove Beneficiary"
+        (click)="removeBeneficiary()"
+      /><br />
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <input
+        type="button"
+        value="Transfer Money"
+        (click)="transferMoney()"
+      /><br />
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <input type="button" value="View Status" (click)="viewStatus()" /><br />
+    </td>
+  </tr>
+</table>
