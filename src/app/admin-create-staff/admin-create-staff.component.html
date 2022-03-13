@@ -1,0 +1,48 @@
+<h3>Header goes here</h3>
+
+<table>
+  <tr>
+    <td>
+      <input
+        type="text"
+        name="staffname"
+        placeholder="Enter Staff Name"
+        [(ngModel)]="createStaffRequest.staffFullName"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input
+        type="text"
+        name="staffUsername"
+        placeholder="Enter Username"
+        [(ngModel)]="createStaffRequest.staffUserName"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter Secure Password"
+        [(ngModel)]="createStaffRequest.staffPassword"
+      /><br />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input
+        type="password"
+        name="confirmPassword"
+        placeholder="Re-Enter Password"
+      /><br />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="button" value="Create Staff" (click)="createStaff()" /><br />
+    </td>
+  </tr>
+</table>

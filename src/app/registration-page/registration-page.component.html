@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#"> Admin Portal</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/staffLogin">Staff Login </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<form>
+  <label>Username: </label>
+  <input
+    type="text"
+    name="username"
+    placeholder="Username"
+    [(ngModel)]="signUpRequest.username"
+  /><br />
+  <label>Full Name: </label>
+  <input
+    type="text"
+    name="fullName"
+    placeholder="Full Name"
+    [(ngModel)]="signUpRequest.fullname"
+  /><br />
+  <label>Password: </label>
+  <input
+    type="password"
+    name="password"
+    placeholder="Password"
+    [(ngModel)]="signUpRequest.password"
+  /><br />
+  <input type="button" value="Register" (click)="customerSignUp()" /><br />
+</form>
+<a href="/">Existing account? Login</a>
