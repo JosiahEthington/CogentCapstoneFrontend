@@ -49,7 +49,9 @@ const routes: Routes = [
   },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'staffLogin', component: StaffLoginPageComponent },
+
   { path: 'updatePassword', component: UpdatePasswordComponent },
+
 ];
 
 @NgModule({

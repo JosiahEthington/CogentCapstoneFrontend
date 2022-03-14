@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
