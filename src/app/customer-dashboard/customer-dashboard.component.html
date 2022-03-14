@@ -1,1 +1,43 @@
-<p>customer-dashboard works!</p>
+<table>
+    <tr>
+        <td>
+            <nav>
+              <div class="row">
+                <div class="col-sm">
+                  <a routerLink="/customerAddAccount">Create Account</a><br />
+                  <a routerLink="/customerAddBeneficiary">Add Beneficiary</a><br />
+                  <a routerLink="/customerRemoveBeneficiary">Remove Beneficiary</a
+                  ><br />
+                  <a routerLink="/customerTransfer"
+                    >Transfer Money</a
+                  ><br />
+                  <a routerLink="/customerAccountStatement">View Statement</a><br />
+                </div>
+              </div>
+            </nav>
+          </td>
+      <td>
+          <table>
+              <tr *ngFor="let account of listOfAccounts">
+                  <label>Account Type:</label>{{account.accountType}} <br/>
+
+                  <label>Account Balance:</label>{{account.balance}} <br/>
+                  <td>
+                    <label class="switch">enable/disable
+                      <input type="checkbox" checked id="togBtn" />
+                      
+                      <div class="slider round"></div>
+                    </label>
+                  </td>
+                  <td>
+                      <button type="button" [value]=account.accountNumber (click)="displayAccountDetails">view more
+
+                        </button>
+                  </td>
+
+              </tr>
+          </table>
+      </td>
+
+    </tr>
+</table>
