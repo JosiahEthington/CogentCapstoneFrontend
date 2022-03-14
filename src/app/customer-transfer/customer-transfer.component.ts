@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< Updated upstream
 import { BeneficiarySummaryResponse } from '../models/response/BeneficiarySummaryResponse';
 import { AccountSummaryResponse } from '../models/response/AccountSummaryResponse';
-=======
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-customer-transfer',
   templateUrl: './customer-transfer.component.html',
-<<<<<<< Updated upstream
   styleUrls: ['./customer-transfer.component.css'],
 })
 export class CustomerTransferComponent implements OnInit {
@@ -44,15 +40,4 @@ export class CustomerTransferComponent implements OnInit {
     this.accounts[2].accountType = 'SB';
     this.accounts[2].balance = 6000;
   }
-=======
-  styleUrls: ['./customer-transfer.component.css']
-})
-export class CustomerTransferComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
->>>>>>> Stashed changes
 }
