@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< Updated upstream
-=======
 import { AccountSummaryResponse } from '../models/response/AccountSummaryResponse';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -12,12 +9,6 @@ import { AccountSummaryResponse } from '../models/response/AccountSummaryRespons
 export class CustomerDashboardComponent implements OnInit {
 
   constructor() { }
-<<<<<<< Updated upstream
-
-  ngOnInit(): void {
-  }
-
-=======
   myClick(){
     console.log('Welcome Rama')
   }
@@ -41,5 +32,4 @@ export class CustomerDashboardComponent implements OnInit {
     
   }
   listOfAccounts:AccountSummaryResponse[]=[new AccountSummaryResponse(),new AccountSummaryResponse()]
->>>>>>> Stashed changes
 }
