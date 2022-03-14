@@ -10,10 +10,7 @@ export class StaffLoginPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
   loginRequest: LoginRequest = new LoginRequest();
 
   staffLogin(): void {}
