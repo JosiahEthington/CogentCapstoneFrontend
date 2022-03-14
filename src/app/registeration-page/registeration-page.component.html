@@ -18,11 +18,7 @@
         <a class="nav-link" routerLink="">Login</a>
       </li>
       <li class="nav-item">
-<<<<<<< Updated upstream
-        <a class="nav-link" routerLink="/staffLogin">Staff Login(current) </a>
-=======
-        <a class="nav-link" routerLink="/staffLogin">Staff Login</a>
->>>>>>> Stashed changes
+        <a class="nav-link" routerLink="/staffLogin">Staff Login </a>
       </li>
     </ul>
   </div>
@@ -33,14 +29,22 @@
     type="text"
     name="username"
     placeholder="Username"
-    [(ngModel)]="loginRequest.username"
+    [(ngModel)]="signUpRequest.username"
+  /><br />
+  <label>Full Name: </label>
+  <input
+    type="text"
+    name="fullName"
+    placeholder="Full Name"
+    [(ngModel)]="signUpRequest.fullname"
   /><br />
   <label>Password: </label>
   <input
     type="password"
     name="password"
     placeholder="Password"
-    [(ngModel)]="loginRequest.password"
+    [(ngModel)]="signUpRequest.password"
   /><br />
-  <input type="button" value="Login" (click)="staffLogin()" /><br />
+  <input type="button" value="Register" (click)="customerSignUp()" /><br />
 </form>
+<a href="/">Existing account? Login</a>

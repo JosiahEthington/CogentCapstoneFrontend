@@ -1,1 +1,84 @@
+<<<<<<< Updated upstream
 <p>customer-update-profile works!</p>
+=======
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <form>
+        <div>
+          <label class="form-label">CustomerId </label>
+          <input
+            type="number"
+            [(ngModel)]="updateCustomerResponse.customerId"
+            readonly
+          />
+        </div>
+        <div>
+          <label class="form-label">FullName</label>
+          <input type="text" [(ngModel)]="updateCustomerRequest.fullname" />
+        </div>
+        <div>
+          <label class="form-label">Phone</label>
+          <input type="number" [(ngModel)]="updateCustomerRequest.phone" />
+        </div>
+        <div>
+          <label class="form-label">PAN</label>
+          <input type="number" [(ngModel)]="updateCustomerRequest.pan" />
+        </div>
+        <div>
+          <label class="form-label">AADHAR</label>
+          <input type="number" [(ngModel)]="updateCustomerRequest.aadhar" />
+        </div>
+        <div>
+          <label class="form-label">Upload PAN</label>
+          <input
+            type="file"
+            accept="image/png, image/jpeg"
+            [(ngModel)]="updateCustomerRequest.panImage"
+          />
+        </div>
+        <div>
+          <label class="form-label">Upload AADHAR</label>
+          <input
+            type="file"
+            accept="image/png, image/jpeg"
+            [(ngModel)]="updateCustomerRequest.aadharImage"
+          />
+        </div>
+        <div>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Select Security Question
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <input
+                type="text"
+                [(ngModel)]="updateCustomerRequest.secretQuestion"
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Enter Answer</label>
+          <input type="text" [(ngModel)]="updateCustomerRequest.secretAnswer" />
+        </div>
+        <div>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="updateCustomer()"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+>>>>>>> Stashed changes
