@@ -15,5 +15,4 @@ export class AdminEnableStaffComponent implements OnInit {
     { staffName: 'name2', staffUserName: 'username2' },
     { staffName: 'name3', staffUserName: 'username3' },
   ];
->>>>>>> Stashed changes
 }
