@@ -3,17 +3,6 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-admin-enable-staff',
   templateUrl: './admin-enable-staff.component.html',
-<<<<<<< Updated upstream
-  styleUrls: ['./admin-enable-staff.component.css']
-})
-export class AdminEnableStaffComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-=======
   styleUrls: ['./admin-enable-staff.component.css'],
 })
 export class AdminEnableStaffComponent implements OnInit {
