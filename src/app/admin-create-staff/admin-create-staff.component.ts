@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< Updated upstream
 import { CreateStaffRequest } from '../models/request/CreateStaffRequest';
 import { Router } from '@angular/router';
 @Component({
@@ -15,19 +14,4 @@ export class AdminCreateStaffComponent implements OnInit {
   createStaff(): void {
     this.router.navigate(['/staffLogin']);
   }
-=======
-
-@Component({
-  selector: 'app-admin-create-staff',
-  templateUrl: './admin-create-staff.component.html',
-  styleUrls: ['./admin-create-staff.component.css']
-})
-export class AdminCreateStaffComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
->>>>>>> Stashed changes
 }
