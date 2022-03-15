@@ -20,7 +20,10 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'register', component: RegistrationPageComponent },
-  { path: 'customerDashboard', component: CustomerDashboardComponent },
+  {
+    path: 'customerDashboard/:customerId',
+    component: CustomerDashboardComponent,
+  },
   { path: 'customerAddAccount', component: CustomerAddAccountComponent },
   {
     path: 'customerAddBeneficiary',

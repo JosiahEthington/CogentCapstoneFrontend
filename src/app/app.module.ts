@@ -23,7 +23,7 @@ import { AdminEnableStaffComponent } from './admin-enable-staff/admin-enable-sta
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
-
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
     UpdatePasswordComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
