@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#"> Admin Portal</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <!-- <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/staffApproveBeneficiary"
+          >Approve Beneficiary</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/staffCustomerEnable">
+          Enable / Block Customer
+        </a>
+      </li>
+    </ul> -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/staffAdjustAccount"> Transfer </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#"
+          >Logout &nbsp; &nbsp; Welcome
+          {{ this.accountDetailStaffResponse[0].customerName }}</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link" href="/staffAccountApproval"
+    >By Account Number</a
+  >
+  <a
+    class="flex-sm-fill text-sm-center nav-link active"
+    href="/staffApproveBeneficiary"
+    >Approve Beneficiary</a
+  >
+  <a class="flex-sm-fill text-sm-center nav-link" href="/staffAccountApproval"
+    >Approve Account</a
+  >
+  <a class="flex-sm-fill text-sm-center nav-link" href="/staffCustomerEnable"
+    >Enable / Block Customer</a
+  >
+</nav>
+<br />
+<table class="table caption-top table-striped table-dark">
+  <caption class="text-center">
+    Enable Disable Customer
+  </caption>
+  <thead>
+    <td>From Customer Name-CustomerId</td>
+    <td>Beneficiary Name - AcNo</td>
+    <td>Beneficiary Added Date</td>
+    <td>Approve</td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let approveBeneficiary of approveBeneficiaries">
+      <td>{{ approveBeneficiary.fromCustomer }}</td>
+      <td>{{ approveBeneficiary.beneficiaryAccount }}</td>
+      <td>
+        {{ approveBeneficiary.beneficiaryAddedDate | date: "M-d-yyyy" }}
+        <!-- Note: 0 is Jan and 11 is the December -->
+      </td>
+      <td>
+        <span style="background-color: #00ff00">Approved</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
