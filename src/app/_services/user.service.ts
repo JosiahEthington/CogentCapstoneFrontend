@@ -9,6 +9,14 @@ const API_URL = 'http://localhost:9015/api/';
   providedIn: 'root',
 })
 export class UserService {
+  getAccountDetails(
+    customerId: number,
+    accountNumber: number
+  ): Observable<any> {
+    return this.http.get(
+      `${API_URL + 'customer/' + customerId + '/account/' + accountNumber}`
+    );
+  }
   constructor(private http: HttpClient) {}
 
   getDashboard(customerId: number): Observable<any> {

@@ -38,7 +38,7 @@ export class CustomerDashboardComponent implements OnInit {
   }
 
   displayAccountDetails(accountNumber: number): void {
-    this.router.navigate(['customerAccountStatement']);
+    this.router.navigate(['customerAccountStatement/' + accountNumber]);
   }
   customerId: number = 0;
   listOfAccounts: AccountSummaryResponse[] = [

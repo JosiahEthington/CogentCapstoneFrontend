@@ -45,7 +45,7 @@ const routes: Routes = [
     component: CustomerUpdateProfileComponent,
   },
   {
-    path: 'customerAccountStatement',
+    path: 'customerAccountStatement/:accountNumber',
     component: CustomerAccountStatementComponent,
   },
   { path: 'staffAccountApproval', component: StaffAccountApprovalComponent },
