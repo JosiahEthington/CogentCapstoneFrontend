@@ -14,7 +14,9 @@ export class CustomerAddAccountComponent implements OnInit {
     private userService: UserService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.createAccountRequest.approved = 'no';
+  }
   accountNo: number = 0;
   createAccountRequest: CreateAccountRequest = new CreateAccountRequest();
 

@@ -23,7 +23,11 @@
         </thead>
         <tr>
           <td>
-            <input type="number" placeholder="Enter Initial Deposit" />
+            <input
+              type="number"
+              [(ngModel)]="createAccountRequest.accountBalance"
+              placeholder="Enter Initial Deposit"
+            />
           </td>
         </tr>
         <tr>
@@ -36,6 +40,7 @@
               type="radio"
               name="accountType"
               value="SB"
+              [(ngModel)]="createAccountRequest.accountType"
             />
           </td>
           <td>
@@ -49,6 +54,7 @@
               type="radio"
               name="accountType"
               value="CA"
+              [(ngModel)]="createAccountRequest.accountType"
             />
           </td>
           <td>
