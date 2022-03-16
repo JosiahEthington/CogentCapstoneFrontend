@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BeneficiarySummaryResponse } from '../models/response/BeneficiarySummaryResponse';
 
 @Component({
@@ -7,14 +8,15 @@ import { BeneficiarySummaryResponse } from '../models/response/BeneficiarySummar
   styleUrls: ['./customer-remove-beneficiary.component.css'],
 })
 export class CustomerRemoveBeneficiaryComponent implements OnInit {
-  constructor() {}
-
+  constructor(private route: ActivatedRoute) {}
+  customerId: number = 0;
   beneficiarySummaryResponses: BeneficiarySummaryResponse[] = [
     new BeneficiarySummaryResponse(),
     new BeneficiarySummaryResponse(),
   ];
 
   ngOnInit(): void {
+    this.customerId = this.route.snapshot.params['customerId'];
     this.beneficiarySummaryResponses[0].beneficiaryAccountNo = 123;
     this.beneficiarySummaryResponses[0].beneficiaryName = 'Xinyi';
 

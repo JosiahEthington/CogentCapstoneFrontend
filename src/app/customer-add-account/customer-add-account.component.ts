@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CreateAccountRequest } from '../models/request/CreateAccountRequest';
+import { TokenStorageService } from '../_services/token-storage.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -11,18 +12,22 @@ import { UserService } from '../_services/user.service';
 export class CustomerAddAccountComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private tokenStorage: TokenStorageService,
+    private userService: UserService,
+    private router: Router
   ) {}
-
+  customerId: number = 0;
   ngOnInit(): void {
     this.createAccountRequest.approved = 'no';
+    this.customerId = this.tokenStorage.getUser().id;
   }
-  accountNo: number = 0;
   createAccountRequest: CreateAccountRequest = new CreateAccountRequest();
 
   onSubmit(): void {
     console.log('Form submitted');
-    this.accountNo = this.route.snapshot.params['accountNo'];
-    this.userService.postAddAccount(this.accountNo, this.createAccountRequest);
+    this.userService
+      .postAddAccount(this.customerId, this.createAccountRequest)
+      .subscribe();
+    this.router.navigate(['customerDashboard']);
   }
 }

@@ -27,15 +27,18 @@ export class LoginPageComponent implements OnInit {
     console.log('Signing in');
     const { username, password } = this.loginRequest;
     this.authService.customerLogin(username, password).subscribe((data) => {
-      console.log(data.accessToken);
+      console.log('Token:');
+      console.log(data.token);
+      console.log('User: ');
       console.log(data);
-      this.tokenStorage.saveToken(data.accessToken);
+      this.customerId = data.id;
+      this.tokenStorage.saveToken(data.token);
       this.tokenStorage.saveUser(data);
 
       this.isLoginFailed = false;
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
-      this.router.navigate(['customerDashboard/' + this.customerId]);
+      this.router.navigate(['customerDashboard']);
     });
   }
   reloadPage(): void {

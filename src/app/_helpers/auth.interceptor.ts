@@ -25,6 +25,9 @@ export class AuthInterceptor implements HttpInterceptor {
     if (token != null && !req.url.includes('authenticate')) {
       // for Spring Boot back-end
       console.log('adding token');
+      // authReq = req.clone({
+      //   headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token),
+      // });
       authReq = req.clone({
         headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token),
       });

@@ -21,10 +21,13 @@ const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'register', component: RegistrationPageComponent },
   {
-    path: 'customerDashboard/:customerId',
+    path: 'customerDashboard',
     component: CustomerDashboardComponent,
   },
-  { path: 'customerAddAccount', component: CustomerAddAccountComponent },
+  {
+    path: 'customerAddAccount',
+    component: CustomerAddAccountComponent,
+  },
   {
     path: 'customerAddBeneficiary',
     component: CustomerAddBeneficiaryComponent,
@@ -33,8 +36,14 @@ const routes: Routes = [
     path: 'customerRemoveBeneficiary',
     component: CustomerRemoveBeneficiaryComponent,
   },
-  { path: 'customerTransfer', component: CustomerTransferComponent },
-  { path: 'customerUpdate', component: CustomerUpdateProfileComponent },
+  {
+    path: 'customerTransfer',
+    component: CustomerTransferComponent,
+  },
+  {
+    path: 'customerUpdate',
+    component: CustomerUpdateProfileComponent,
+  },
   {
     path: 'customerAccountStatement',
     component: CustomerAccountStatementComponent,

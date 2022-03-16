@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountDetailsResponse } from '../models/response/AccountDetailsResponse';
 import { Transaction } from '../models/Transaction';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-customer-account-statement',
@@ -8,9 +9,10 @@ import { Transaction } from '../models/Transaction';
   styleUrls: ['./customer-account-statement.component.css'],
 })
 export class CustomerAccountStatementComponent implements OnInit {
-  constructor() {}
+  constructor(private tokenStorageService: TokenStorageService) {}
 
   ngOnInit(): void {
+    this.customerId = this.tokenStorageService.getUser().id;
     this.accountDetailsResponse.accountNumber = 4332211;
     this.accountDetailsResponse.balance = 12335;
     this.accountDetailsResponse.transactions = [
@@ -34,4 +36,5 @@ export class CustomerAccountStatementComponent implements OnInit {
     this.accountDetailsResponse.transactions[2].transactionType = 'Cr';
   }
   accountDetailsResponse: AccountDetailsResponse = new AccountDetailsResponse();
+  customerId: number = 0;
 }

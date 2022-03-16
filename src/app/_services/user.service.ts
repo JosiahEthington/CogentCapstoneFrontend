@@ -12,13 +12,13 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getDashboard(customerId: number): Observable<any> {
-    return this.http.get(`${API_URL + customerId}/account`, {
-      responseType: 'text',
-    });
+    return this.http.get(`${API_URL + 'customer/' + customerId}/account`);
   }
 
   postAddAccount(customerId: number, body: any): Observable<any> {
+    console.log('Body of add Acount request: ');
     console.log(body);
+    console.log(JSON.stringify(body));
     return this.http.post(
       `${API_URL + 'customer'}/${customerId}/account`,
       body
@@ -26,14 +26,10 @@ export class UserService {
   }
 
   getAddBeneficiary(): Observable<any> {
-    return this.http.get(API_URL + 'customerAddBeneficiary', {
-      responseType: 'text',
-    });
+    return this.http.get(API_URL + 'customerAddBeneficiary');
   }
 
   getRemoveBeneficiary(): Observable<any> {
-    return this.http.get(API_URL + 'customerRemoveBeneficiary', {
-      responseType: 'text',
-    });
+    return this.http.get(API_URL + 'customerRemoveBeneficiary');
   }
 }

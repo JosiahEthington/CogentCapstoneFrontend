@@ -1,23 +1,33 @@
 <!-- Sidebar -->
 <div class="sidebar" style="width: 25%">
   <div>
-    <a routerLink="/customerAddAccount" class="sidebar-item">Create Account</a>
+    <a routerLink="/customerAddAccount//{{ customerId }}" class="sidebar-item"
+      >Create Account</a
+    >
   </div>
   <div>
-    <a routerLink="/customerAddBeneficiary" class="sidebar-item"
+    <a
+      routerLink="/customerAddBeneficiary//{{ customerId }}"
+      class="sidebar-item"
       >Add Beneficiary</a
     >
   </div>
   <div>
-    <a routerLink="/customerRemoveBeneficiary" class="sidebar-item"
+    <a
+      routerLink="/customerRemoveBeneficiary//{{ customerId }}"
+      class="sidebar-item"
       >Remove Beneficiary</a
     >
   </div>
   <div>
-    <a routerLink="/customerTransfer" class="sidebar-item">Transfer Money</a>
+    <a routerLink="/customerTransfer//{{ customerId }}" class="sidebar-item"
+      >Transfer Money</a
+    >
   </div>
   <div>
-    <a routerLink="/customerAccountStatement" class="sidebar-item"
+    <a
+      routerLink="/customerAccountStatement//{{ customerId }}"
+      class="sidebar-item"
       >View Statement</a
     >
   </div>

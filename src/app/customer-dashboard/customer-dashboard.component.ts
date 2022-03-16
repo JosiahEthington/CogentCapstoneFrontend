@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AccountSummaryResponse } from '../models/response/AccountSummaryResponse';
-import { User } from '../models/User';
+import { TokenStorageService } from '../_services/token-storage.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -12,7 +12,8 @@ import { UserService } from '../_services/user.service';
 export class CustomerDashboardComponent implements OnInit {
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private tokenStorageService: TokenStorageService,
+    private router: Router
   ) {}
   myClick() {
     console.log('Welcome Rama');
@@ -22,7 +23,7 @@ export class CustomerDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.customerId = this.route.snapshot.params['customerId'];
+    this.customerId = this.tokenStorageService.getUser().id;
 
     this.userService.getDashboard(this.customerId).subscribe((data) => {
       this.listOfAccounts = data;
@@ -36,7 +37,9 @@ export class CustomerDashboardComponent implements OnInit {
     // this.listOfAccounts[1].status='enabled'
   }
 
-  displayAccountDetails(): void {}
+  displayAccountDetails(accountNumber: number): void {
+    this.router.navigate(['customerAccountStatement']);
+  }
   customerId: number = 0;
   listOfAccounts: AccountSummaryResponse[] = [
     new AccountSummaryResponse(),
