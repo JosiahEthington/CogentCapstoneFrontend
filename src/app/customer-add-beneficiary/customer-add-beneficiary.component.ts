@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AddBeneficiaryRequest } from '../models/request/AddBeneficiaryRequest';
+import { AddBeneficiaryRequest } from '../models/request/addBeneficiaryRequest';
+import { TokenStorageService } from '../_services/token-storage.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-customer-add-beneficiary',
@@ -7,8 +9,20 @@ import { AddBeneficiaryRequest } from '../models/request/AddBeneficiaryRequest';
   styleUrls: ['./customer-add-beneficiary.component.css'],
 })
 export class CustomerAddBeneficiaryComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private userService: UserService,
+    private tokenStorageService: TokenStorageService
+  ) {}
+  customerId: number = 0;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.customerId = this.tokenStorageService.getUser().id;
+  }
   addBeneficiaryRequest: AddBeneficiaryRequest = new AddBeneficiaryRequest();
+
+  onSubmit(): void {
+    this.userService
+      .postAddBeneficiary(this.customerId, this.addBeneficiaryRequest)
+      .subscribe();
+  }
 }

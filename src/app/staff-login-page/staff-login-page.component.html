@@ -12,31 +12,46 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="">Login</a>
-      </li>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+    <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/staffLogin">Staff Login(current)</a>
+        <a class="nav-link" routerLink="staffLogin">Staff Corner</a>
       </li>
     </ul>
   </div>
 </nav>
-<form>
-  <label>Username: </label>
-  <input
-    type="text"
-    name="username"
-    placeholder="Username"
-    [(ngModel)]="loginRequest.username"
-  /><br />
-  <label>Password: </label>
-  <input
-    type="password"
-    name="password"
-    placeholder="Password"
-    [(ngModel)]="loginRequest.password"
-  /><br />
-  <input type="button" value="Login" (click)="staffLogin()" /><br />
-</form>
+
+<div class="card card-container">
+  <h3>Login As Staff</h3>
+  <br />
+  <form>
+    <label
+      >Username:
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        [(ngModel)]="loginRequest.username"
+      /><br />
+    </label>
+    <label
+      >Password:
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="loginRequest.password"
+      />
+    </label>
+    <br />
+    &nbsp; &nbsp;&nbsp;&nbsp;
+    <input
+      type="button"
+      class="btn btn-primary btn-block"
+      value="Login"
+      (click)="staffLogin()"
+    /><br /><br />
+  </form>
+  Owing An Account With Us:
+  <a href="#">LOGIN HERE</a>
+</div>

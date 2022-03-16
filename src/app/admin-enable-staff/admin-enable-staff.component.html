@@ -1,3 +1,38 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#"> Admin Portal</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  ​
+  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/adminCreateStaff">Super Admin</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+​
+<nav class="nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link" href="/adminCreateStaff"
+    >Create Staff</a
+  >
+  <a
+    class="flex-sm-fill text-sm-center nav-link active"
+    href="/adminEnableStaff"
+    >View Staffs</a
+  >
+</nav>
+<br />
+​
 <table class="table caption-top table-striped table-dark">
   <caption class="text-center">
     Enable Disable Customer
@@ -20,7 +55,7 @@
     </tr>
   </tbody>
 </table>
-
+​
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item"><a class="page-link" href="#">Previous</a></li>

@@ -33,11 +33,26 @@ export class UserService {
     );
   }
 
-  getAddBeneficiary(): Observable<any> {
-    return this.http.get(API_URL + 'customerAddBeneficiary');
+  postAddBeneficiary(customerId: number, body: any): Observable<any> {
+    return this.http.post(
+      API_URL + 'customer/' + customerId + '/beneficiary',
+      body,
+      { responseType: 'text' }
+    );
   }
 
-  getRemoveBeneficiary(): Observable<any> {
-    return this.http.get(API_URL + 'customerRemoveBeneficiary');
+  getListBeneficiary(customerId: number): Observable<any> {
+    return this.http.get(API_URL + 'customer/' + customerId + '/beneficiary');
+  }
+
+  deleteRemoveBeneficiary(
+    customerId: number,
+    beneficiaryId: any
+  ): Observable<any> {
+    console.log(beneficiaryId);
+    return this.http.delete(
+      `${API_URL + 'customer/' + customerId + '/beneficiary/' + beneficiaryId}`,
+      { responseType: 'text' }
+    );
   }
 }
