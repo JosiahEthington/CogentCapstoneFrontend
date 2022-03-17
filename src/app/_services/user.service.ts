@@ -9,6 +9,7 @@ const API_URL = 'http://localhost:9015/api/';
   providedIn: 'root',
 })
 export class UserService {
+  //  getCustomerAccount
   getAccountDetails(
     customerId: number,
     accountNumber: number
@@ -19,10 +20,12 @@ export class UserService {
   }
   constructor(private http: HttpClient) {}
 
+  //CustomerController getAccounts
   getDashboard(customerId: number): Observable<any> {
     return this.http.get(`${API_URL + 'customer/' + customerId}/account`);
   }
 
+  //CustomerController createAccount
   postAddAccount(customerId: number, body: any): Observable<any> {
     console.log('Body of add Acount request: ');
     console.log(body);
@@ -32,7 +35,7 @@ export class UserService {
       body
     );
   }
-
+  //CustomerController addBeneficiary
   postAddBeneficiary(customerId: number, body: any): Observable<any> {
     return this.http.post(
       API_URL + 'customer/' + customerId + '/beneficiary',
@@ -41,10 +44,12 @@ export class UserService {
     );
   }
 
+  //CustomerController getBeneficiaries
   getListBeneficiary(customerId: number): Observable<any> {
     return this.http.get(API_URL + 'customer/' + customerId + '/beneficiary');
   }
 
+  //CustomerController deleteBeneficiary
   deleteRemoveBeneficiary(
     customerId: number,
     beneficiaryId: any
@@ -53,6 +58,18 @@ export class UserService {
     return this.http.delete(
       `${API_URL + 'customer/' + customerId + '/beneficiary/' + beneficiaryId}`,
       { responseType: 'text' }
+    );
+  }
+
+  //CustomerController approveAccount
+  staffApproveAccount(
+    customerId: number,
+    accountNumber: number,
+    value: any
+  ): Observable<any> {
+    return this.http.put(
+      `${API_URL + 'customer/' + customerId + '/account/' + accountNumber}`,
+      value
     );
   }
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginRequest } from '../models/request/LoginRequest';
+import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-staff-login-page',
@@ -7,11 +10,39 @@ import { LoginRequest } from '../models/request/LoginRequest';
   styleUrls: ['./staff-login-page.component.css'],
 })
 export class StaffLoginPageComponent implements OnInit {
-  constructor() {}
-
+  constructor(
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router
+  ) {}
+  isLoggedIn = false;
+  staffId = 1;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
   ngOnInit(): void {}
 
   loginRequest: LoginRequest = new LoginRequest();
+  staffLogin(): void {
+    console.log('Staff Signing in');
+    const { username, password } = this.loginRequest;
+    this.authService.staffLogin(username, password).subscribe((data) => {
+      console.log('Token:');
+      console.log(data.token);
+      console.log('User: ');
+      console.log(data);
+      this.staffId = data.id;
+      this.tokenStorage.saveToken(data.token);
+      this.tokenStorage.saveUser(data);
 
-  staffLogin(): void {}
+      this.isLoginFailed = false;
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+      console.log(this.roles.length);
+      this.router.navigate(['staffDashboard']);
+    });
+  }
+  reloadPage(): void {
+    window.location.reload();
+  }
 }

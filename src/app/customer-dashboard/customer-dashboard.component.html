@@ -1,50 +1,30 @@
 <table>
-  <tr>
+  <tr *ngFor="let account of listOfAccounts">
+    <label>Account Type:</label
+    >{{
+      account.accountType
+    }}
+    <br />
+
+    <label>Account Balance:</label
+    >{{
+      account.balance
+    }}
+    <br />
     <td>
-      <nav>
-        <div class="row">
-          <div class="col-sm">
-            <a routerLink="/customerAddAccount">Create Account</a><br />
-            <a routerLink="/customerAddBeneficiar">Add Beneficiary</a><br />
-            <a routerLink="/customerRemoveBeneficiary">Remove Beneficiary</a
-            ><br />
-            <a routerLink="/customerTransfer">Transfer Money</a><br />
-            <a routerLink="/customerAccountStatement">View Statement</a><br />
-          </div>
-        </div>
-      </nav>
+      <label class="switch">
+        <input type="checkbox" checked id="togBtn" />
+
+        <div class="slider round"></div>
+      </label>
     </td>
     <td>
-      <table>
-        <tr *ngFor="let account of listOfAccounts">
-          <label>Account Type:</label
-          >{{
-            account.accountType
-          }}
-          <br />
-
-          <label>Account Balance:</label
-          >{{
-            account.balance
-          }}
-          <br />
-          <td>
-            <label class="switch">
-              <input type="checkbox" checked id="togBtn" />
-
-              <div class="slider round"></div>
-            </label>
-          </td>
-          <td>
-            <button
-              type="button"
-              (click)="displayAccountDetails(account.accountNumber)"
-            >
-              view more
-            </button>
-          </td>
-        </tr>
-      </table>
+      <button
+        type="button"
+        (click)="displayAccountDetails(account.accountNumber)"
+      >
+        view more
+      </button>
     </td>
   </tr>
 </table>

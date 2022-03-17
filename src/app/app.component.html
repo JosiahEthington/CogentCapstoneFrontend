@@ -1,5 +1,109 @@
 <!--Header here -->
-<main role="main" class="container">
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">ABC BANK</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <!-- <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+      </li>
+      <li class="nav-item" *ngIf="showModeratorBoard">
+        <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+      </li> -->
+      <li class="nav-item">
+        <a
+          href="/customerUpdate"
+          class="nav-link"
+          *ngIf="isLoggedIn"
+          routerLink="/customerUpdate"
+        >
+          Update Profile</a
+        >
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto" *ngIf="isStaff">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/staffByAccountNumber"
+          >By Account Number</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/staffApproveBeneficiary"
+          >Approve Beneficiary</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/staffAccountApproval"
+          >Approve Accounts</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/staffCustomerEnable"
+          >Enable/Disable Customer</a
+        >
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a class="nav-link">Welcome: {{ username }}</a>
+      </li>
+      <li class="nav-item" *ngIf="isCustomer">
+        <a
+          href="/customerDashboard"
+          class="nav-link"
+          routerLink="/customerDashboard"
+          >Dashboard</a
+        >
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <!-- <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+      </li> -->
+
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="">Login</a>
+      </li>
+      <div class="justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="staffLogin">Staff Corner</a>
+          </li>
+        </ul>
+      </div>
+    </ul>
+  </nav>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar" style="width: 25%" *ngIf="isCustomer">
+  <div>
+    <a routerLink="/customerAddAccount" class="sidebar-item">Create Account</a>
+  </div>
+  <div>
+    <a routerLink="/customerAddBeneficiary" class="sidebar-item"
+      >Add Beneficiary</a
+    >
+  </div>
+  <div>
+    <a routerLink="/customerRemoveBeneficiary" class="sidebar-item"
+      >Remove Beneficiary</a
+    >
+  </div>
+  <div>
+    <a routerLink="/customerTransfer" class="sidebar-item">Transfer Money</a>
+  </div>
+  <div>
+    <a routerLink="/customerAccountStatement" class="sidebar-item"
+      >View Statement</a
+    >
+  </div>
+</div>
+
+<main role="main" class="container" style="margin-left: 25%">
   <div class="starter-template">
     <router-outlet></router-outlet>
   </div>

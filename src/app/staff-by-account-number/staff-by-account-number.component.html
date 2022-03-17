@@ -13,6 +13,18 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <!-- <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/staffApproveBeneficiary"
+          >Approve Beneficiary</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/staffCustomerEnable">
+          Enable / Block Customer
+        </a>
+      </li>
+    </ul> -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/staffAdjustAccount"> Transfer </a>
@@ -24,8 +36,8 @@
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="#"
-          >Logout &nbsp; &nbsp; Welcome {{ this.currentUser.username }}</a
-        >
+          >Logout &nbsp; &nbsp; Welcome
+          {{ this.accountDetailStaffResponse[0].customerName }}</a
         >
       </li>
     </ul>
@@ -33,7 +45,9 @@
 </nav>
 
 <nav class="nav nav-pills flex-column flex-sm-row">
-  <a class="flex-sm-fill text-sm-center nav-link" href="/staffByAccountNumber"
+  <a
+    class="flex-sm-fill text-sm-center nav-link active"
+    href="/staffByAccountNumber"
     >By Account Number</a
   >
   <a
@@ -41,44 +55,51 @@
     href="/staffApproveBeneficiary"
     >Approve Beneficiary</a
   >
-  <a
-    class="flex-sm-fill text-sm-center nav-link active"
-    href="/staffAccountApproval"
+  <a class="flex-sm-fill text-sm-center nav-link" href="/staffAccountApproval"
     >Approve Account</a
   >
   <a class="flex-sm-fill text-sm-center nav-link" href="/staffCustomerEnable"
     >Enable / Block Customer</a
   >
 </nav>
+<br />
+<form>
+  <div class="input-group">
+    <input
+      type="text"
+      class="form-control mr-sm-2"
+      placeholder="Enter Account Number"
+    />
+    <span class="input-group-btn">
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <button type="submit" class="btn btn-primary mb-2">Go</button>
+    </span>
+  </div>
+  <!-- /input-group -->
+</form>
 
 <br />
-
+Ac No: {{ accountDetailStaffResponse[0].accountNumber }} &nbsp; &nbsp; Name:
+{{ this.accountDetailStaffResponse[0].customerName }} &nbsp; &nbsp; Balance:
+{{ this.accountDetailStaffResponse[0].balance }}
 <table class="table caption-top table-striped table-dark">
   <caption class="text-center">
     Account Details
   </caption>
   <thead style="color: #0000ff">
-    <td>Account Number</td>
-    <td>Customer Name</td>
-    <td>Account Type</td>
-    <td>Created Date</td>
-    <td>Enable Approve</td>
+    <td>Date</td>
+    <td>Reference</td>
+    <td>Amount</td>
+    <td>Cr/Db</td>
   </thead>
   <tbody>
-    <tr *ngFor="let accountApprovalSummary of accountApprovalSummaryResponse">
-      <td>{{ accountApprovalSummary.accountNo }}</td>
-      <td>{{ accountApprovalSummary.customerName }}</td>
-      <td>{{ accountApprovalSummary.accountType }}</td>
-      <td>{{ accountApprovalSummary.dateCreated | date: "M-d-yyyy" }}</td>
-      <td>
-        <button
-          type="button"
-          (click)="onDelete(accountApprovalSummary.accountNo)"
-          class="btn btn-danger"
-        >
-          Approve
-        </button>
-      </td>
+    <tr
+      *ngFor="let accountDetail of accountDetailStaffResponse[0].transactions"
+    >
+      <td>{{ accountDetail.date | date: "M-d-yyyy" }}</td>
+      <td>{{ accountDetail.reference }}</td>
+      <td>{{ accountDetail.amount }}</td>
+      <td>{{ accountDetail.accountType }}</td>
     </tr>
   </tbody>
 </table>

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ApproveAccountRequest } from '../models/request/ApproveAccountRequests';
+import { AccountApprovalSummaryResponse } from '../models/response/AccountApprovalSummaryResponse';
 import { AccountDetailsStaffResponse } from '../models/response/AccountDetailsStaffResponse';
+import { AccountSummaryResponse } from '../models/response/AccountSummaryResponse';
+import { TokenStorageService } from '../_services/token-storage.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-staff-account-approval',
@@ -7,29 +12,40 @@ import { AccountDetailsStaffResponse } from '../models/response/AccountDetailsSt
   styleUrls: ['./staff-account-approval.component.css'],
 })
 export class StaffAccountApprovalComponent implements OnInit {
-  accountDetailStaffResponse: AccountDetailsStaffResponse[] = [
-    new AccountDetailsStaffResponse(),
+  currentUser: any;
+
+  accountApprovalSummaryResponse: AccountApprovalSummaryResponse[] = [
+    new AccountApprovalSummaryResponse(),
   ];
 
-  constructor() {}
+  accountSummaryResponse: AccountSummaryResponse[] = [
+    new AccountSummaryResponse(),
+  ];
+
+  constructor(
+    private token: TokenStorageService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.accountDetailStaffResponse[0].accountNumber = 44332211;
-    this.accountDetailStaffResponse[0].balance = 123235;
-    this.accountDetailStaffResponse[0].customerName = 'John Doe';
-    this.accountDetailStaffResponse[0].transactions = [
-      {
-        date: new Date(2022, 1, 1),
-        reference: '123-testing',
-        amount: 500,
-        accountType: 'Cr',
-      },
-      {
-        date: new Date(2022, 2, 1),
-        reference: '222-testing',
-        amount: 2000,
-        accountType: 'DB',
-      },
-    ];
+    this.currentUser = this.token.getUser();
+    this.userService.getDashboard(this.currentUser.id).subscribe((data) => {
+      this.accountSummaryResponse = data;
+    });
+  }
+
+  approveAccountRequest: ApproveAccountRequest = new ApproveAccountRequest();
+
+  onDelete(AccountNumber: number): void {
+    this.accountApprovalSummaryResponse[0].approved = 'yes';
+    this.userService
+      .staffApproveAccount(
+        this.currentUser.id,
+        AccountNumber,
+        this.approveAccountRequest
+      )
+      .subscribe((data) => {
+        this.accountApprovalSummaryResponse = data;
+      });
   }
 }

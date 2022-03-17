@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { StaffDashboardComponent } from './staff-dashboard/staff-dashboard.component';
+import { StaffByAccountNumberComponent } from './staff-by-account-number/staff-by-account-number.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     AdminCreateStaffComponent,
     AdminEnableStaffComponent,
     UpdatePasswordComponent,
+    StaffDashboardComponent,
+    StaffByAccountNumberComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [authInterceptorProviders],

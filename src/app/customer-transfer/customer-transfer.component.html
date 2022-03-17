@@ -1,87 +1,61 @@
-<table class="table table-bordered table-hover">
+<table
+  class="table-bordered table-hover container justify-content-center"
+  style="max-width: 65%"
+  align="left"
+>
+  Select From Account:
+  <thead>
+    <td>Ac No</td>
+    <td>Balance</td>
+    <td>Ac Type</td>
+    <td>Select</td>
+  </thead>
+  <tr *ngFor="let account of accounts">
+    <td>{{ account.accountNumber }}</td>
+    <td>{{ account.balance }}</td>
+    <td>{{ account.accountType }}</td>
+    <td>
+      <input class="form-check-input" type="radio" name="fromAccount" />
+    </td>
+  </tr>
+  <tr>
+    <label>Select To Account</label>
+  </tr>
   <tr>
     <td>
-      <nav>
-        <div class="row">
-          <div class="col-sm">
-            <a routerLink="/customerAddAccount/:customerId">Create Account</a
-            ><br />
-            <a routerLink="/customerAddBeneficiary/:customerId"
-              >Add Beneficiary</a
-            ><br />
-            <a routerLink="/customerRemoveBeneficiary/:customerId"
-              >Remove Beneficiary</a
-            ><br />
-            <a
-              routerLink="/customerTransfer/:customerId"
-              class="bg-primary text-dark"
-              >Transfer Money</a
-            ><br />
-            <a routerLink="/customerAccountStatement/:customerId"
-              >View Statement</a
-            ><br />
-          </div>
-        </div>
-      </nav>
+      <select class="form-select">
+        <option
+          *ngFor="let beneficiary of beneficiaries"
+          value="beneficiary.beneficiaryAccountNo"
+        >
+          {{ beneficiary.beneficiaryName }} :
+          {{ beneficiary.beneficiaryAccountNo }}
+        </option>
+      </select>
     </td>
     <td>
-      <table class="table table-bordered table-hover">
-        Select From Account:
-        <thead>
-          <td>Ac No</td>
-          <td>Balance</td>
-          <td>Ac Type</td>
-          <td>Select</td>
-        </thead>
-        <tr *ngFor="let account of accounts">
-          <td>{{ account.accountNumber }}</td>
-          <td>{{ account.balance }}</td>
-          <td>{{ account.accountType }}</td>
-          <td>
-            <input class="form-check-input" type="radio" name="fromAccount" />
-          </td>
-        </tr>
-        <tr>
-          <label>Select To Account</label>
-        </tr>
-        <tr>
-          <td>
-            <select class="form-select">
-              <option
-                *ngFor="let beneficiary of beneficiaries"
-                value="beneficiary.beneficiaryAccountNo"
-              >
-                {{ beneficiary.beneficiaryName }} :
-                {{ beneficiary.beneficiaryAccountNo }}
-              </option>
-            </select>
-          </td>
-          <td>
-            <input
-              type="number"
-              class="form-control"
-              name="amount"
-              placeholder="Amount"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input
-              type="text"
-              class="form-control"
-              name="reason"
-              placeholder="Reason"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </td>
-        </tr>
-      </table>
+      <input
+        type="number"
+        class="form-control"
+        name="amount"
+        placeholder="Amount"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input
+        type="text"
+        class="form-control"
+        name="reason"
+        placeholder="Reason"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </td>
   </tr>
 </table>

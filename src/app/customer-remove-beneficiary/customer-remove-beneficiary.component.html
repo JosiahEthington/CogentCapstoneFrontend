@@ -1,74 +1,21 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#"> Admin Portal</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarsExampleDefault"
-    aria-controls="navbarsExampleDefault"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="#"> Profile </a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#"
-          >Logout &nbsp; &nbsp; Welcome {{ currentUser.username }}</a
-        >
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<!-- Sidebar -->
-<div class="sidebar" style="width: 25%">
-  <div>
-    <a routerLink="/customerAddAccount" class="sidebar-item">Create Account</a>
-  </div>
-  <div>
-    <a routerLink="/customerAddBeneficiary" class="sidebar-item"
-      >Add Beneficiary</a
-    >
-  </div>
-  <div>
-    <a routerLink="/customerRemoveBeneficiary" class="sidebar-item"
-      >Remove Beneficiary</a
-    >
-  </div>
-  <div>
-    <a routerLink="/customerTransfer" class="sidebar-item">Transfer Money</a>
-  </div>
-  <div>
-    <a routerLink="/customerAccountStatement" class="sidebar-item"
-      >View Statement</a
-    >
-  </div>
-</div>
-
 <!-- Page Content -->
-<div style="margin-left: 25%">
+<div>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-9">
         <div class="w3-container w3-teal">
           <div>
             <table class="table table-striped table-light">
-              <thead></thead>
+              <thead>
+                <td>Beneficiary Ac.No</td>
+                <td>Beneficiary Ac.No</td>
+                <td>Delete Beneficiary</td>
+              </thead>
               <tbody>
                 <tr *ngFor="let beneficiary of beneficiarySummaryResponses">
                   <td>{{ beneficiary.beneficiaryAccountNo }}</td>
-                  <td>{{ beneficiary.beneficiaryName }}</td>
+                  <td>beneficiary.beneficiaryName</td>
+
                   <td>
                     <button
                       type="button"
