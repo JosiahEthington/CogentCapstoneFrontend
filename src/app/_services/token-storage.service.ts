@@ -4,10 +4,10 @@ const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenStorageService {
-  constructor() { }
+  constructor() {}
 
   signOut(): void {
     window.sessionStorage.clear();
@@ -33,6 +33,6 @@ export class TokenStorageService {
       return JSON.parse(user);
     }
 
-    return {};
+    return null;
   }
 }

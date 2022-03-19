@@ -6,23 +6,22 @@
         <div class="w3-container w3-teal">
           <div>
             <div>
-              <div class="dropdown">
-                <button
-                  class="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
+              <label>Select Account: </label><br />
+              <select
+                class="form-select"
+                [(ngModel)]="accountNumber"
+                name="toAccount"
+              >
+                <option
+                  *ngFor="let account of accounts"
+                  [value]="account.accountNumber"
                 >
-                  Select Account
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <input
-                    type="text"
-                    [(ngModel)]="accountDetailsResponse.accountType"
-                  />
-                </div>
-              </div>
+                  {{ account.accountNumber }}
+                </option>
+              </select>
+              <button type="button" (click)="show()" class="btn btn-primary">
+                Show
+              </button>
             </div>
             <br />
 
@@ -30,12 +29,14 @@
               <label class="form-label">Acc No </label>
               <input
                 type="number"
+                name="acctNumber"
                 [(ngModel)]="accountDetailsResponse.accountNumber"
                 readonly
               />
               <label class="form-label">Balance </label>
               <input
                 type="number"
+                name="balance"
                 [(ngModel)]="accountDetailsResponse.balance"
                 readonly
               />
@@ -45,8 +46,8 @@
           <table class="table table-striped table-light">
             <thead>
               <td>Date</td>
-              <td>Amount</td>
               <td>Reference</td>
+              <td>Amount</td>
               <td>Cr/Db</td>
             </thead>
             <tbody>

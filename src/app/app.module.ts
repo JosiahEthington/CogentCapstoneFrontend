@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+// import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { StaffDashboardComponent } from './staff-dashboard/staff-dashboard.component';
 import { StaffByAccountNumberComponent } from './staff-by-account-number/staff-by-account-number.component';
+import { CustomerViewStatementComponent } from './customer-view-statement/customer-view-statement.component';
 
 @NgModule({
   declarations: [
@@ -50,8 +52,15 @@ import { StaffByAccountNumberComponent } from './staff-by-account-number/staff-b
     UpdatePasswordComponent,
     StaffDashboardComponent,
     StaffByAccountNumberComponent,
+    CustomerViewStatementComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    // BackButtonDisableModule.forRoot(),
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })

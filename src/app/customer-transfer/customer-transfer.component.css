@@ -1,0 +1,21 @@
+.card {
+  width: 80%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-left: 5%;
+}
+
+input {
+  width: 20%;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* form-select {
+  width: 40%;
+  text-align: center;
+} */

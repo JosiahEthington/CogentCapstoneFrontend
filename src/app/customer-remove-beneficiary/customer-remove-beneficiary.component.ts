@@ -39,5 +39,6 @@ export class CustomerRemoveBeneficiaryComponent implements OnInit {
     this.userService
       .deleteRemoveBeneficiary(this.customerId, beneficiaryId)
       .subscribe();
+    window.location.reload();
   }
 }

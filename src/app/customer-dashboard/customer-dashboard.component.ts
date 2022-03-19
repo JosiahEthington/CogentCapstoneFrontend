@@ -28,21 +28,11 @@ export class CustomerDashboardComponent implements OnInit {
     this.userService.getDashboard(this.customerId).subscribe((data) => {
       this.listOfAccounts = data;
     });
-
-    // this.listOfAccounts[0].accountType='SB'
-    // this.listOfAccounts[0].balance=3234
-    // this.listOfAccounts[0].status='enabled'
-    // this.listOfAccounts[1].accountType='CA'
-    // this.listOfAccounts[1].balance=12235
-    // this.listOfAccounts[1].status='enabled'
   }
 
   displayAccountDetails(accountNumber: number): void {
     this.router.navigate(['customerAccountStatement/' + accountNumber]);
   }
   customerId: number = 0;
-  listOfAccounts: AccountSummaryResponse[] = [
-    new AccountSummaryResponse(),
-    new AccountSummaryResponse(),
-  ];
+  listOfAccounts: AccountSummaryResponse[] = [];
 }

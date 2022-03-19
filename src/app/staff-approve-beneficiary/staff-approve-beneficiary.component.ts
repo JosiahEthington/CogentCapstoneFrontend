@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountDetailsStaffResponse } from '../models/response/AccountDetailsStaffResponse';
+import { ApproveBeneficiaryRequest } from '../models/request/ApproveBeneficiaryRequest';
+import { AccountApprovalSummaryResponse } from '../models/response/AccountApprovalSummaryResponse';
 import { ApproveBeneficiaryResponse } from '../models/response/ApproveBeneficiaryResponse';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-staff-approve-beneficiary',
@@ -8,27 +10,24 @@ import { ApproveBeneficiaryResponse } from '../models/response/ApproveBeneficiar
   styleUrls: ['./staff-approve-beneficiary.component.css'],
 })
 export class StaffApproveBeneficiaryComponent implements OnInit {
-  approveBeneficiaries: ApproveBeneficiaryResponse[] = [
-    new ApproveBeneficiaryResponse(),
-    new ApproveBeneficiaryResponse(),
-    new ApproveBeneficiaryResponse(),
-  ];
-
-  accountDetailStaffResponse: AccountDetailsStaffResponse[] = [
-    new AccountDetailsStaffResponse(),
-  ];
-  constructor() {}
-
+  approveBeneficiaries: ApproveBeneficiaryResponse[] = [];
+  unapprovedBeneficiaries: AccountApprovalSummaryResponse[] = [];
+  constructor(private userService: UserService) {}
   ngOnInit(): void {
-    this.approveBeneficiaries[0].fromCustomer = 1;
-    this.approveBeneficiaries[0].beneficiaryAccount = 1234;
-    this.approveBeneficiaries[0].beneficiaryAddedDate = new Date(2000, 11, 12);
-    this.approveBeneficiaries[1].fromCustomer = 2;
-    this.approveBeneficiaries[1].beneficiaryAccount = 12345;
-    this.approveBeneficiaries[1].beneficiaryAddedDate = new Date(2001, 5, 1);
-    this.approveBeneficiaries[2].fromCustomer = 3;
-    this.approveBeneficiaries[2].beneficiaryAccount = 12346;
-    this.approveBeneficiaries[2].beneficiaryAddedDate = new Date(2002, 4, 1);
-    this.accountDetailStaffResponse[0].customerName = 'John Doe';
+    this.userService.staffGetUnapprovedAccounts().subscribe({
+      next: (data) => {
+        this.unapprovedBeneficiaries = data;
+      },
+    });
+    this.approveBeneficiaryRequest.approved = 'no';
+  }
+  approveBeneficiaryRequest: ApproveBeneficiaryRequest =
+    new ApproveBeneficiaryRequest();
+  onSubmit(): void {
+    this.userService
+      .staffSetCustomerEnabled(this.approveBeneficiaryRequest)
+      .subscribe();
+    alert('Beneficiary approved');
+    window.location.reload();
   }
 }

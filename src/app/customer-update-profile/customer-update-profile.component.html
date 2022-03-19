@@ -1,9 +1,11 @@
-<div class="container">
+<div class="card">
   <div class="row justify-content-center">
+    <p><b>Update Customer Information</b></p>
     <div class="col-6">
       <form>
         <div>
           <label class="form-label">CustomerId </label>
+          &nbsp;&nbsp;
           <input
             type="number"
             [(ngModel)]="updateCustomerResponse.customerId"
@@ -12,22 +14,27 @@
         </div>
         <div>
           <label class="form-label">FullName</label>
+          &nbsp;&nbsp;
           <input type="text" [(ngModel)]="updateCustomerRequest.fullname" />
         </div>
         <div>
           <label class="form-label">Phone</label>
+          &nbsp;&nbsp;
           <input type="number" [(ngModel)]="updateCustomerRequest.phone" />
         </div>
         <div>
           <label class="form-label">PAN</label>
+          &nbsp;&nbsp;
           <input type="number" [(ngModel)]="updateCustomerRequest.pan" />
         </div>
         <div>
           <label class="form-label">AADHAR</label>
+          &nbsp;&nbsp;
           <input type="number" [(ngModel)]="updateCustomerRequest.aadhar" />
         </div>
         <div>
           <label class="form-label">Upload PAN</label>
+          &nbsp;&nbsp;
           <input
             type="file"
             accept="image/png, image/jpeg"
@@ -36,6 +43,7 @@
         </div>
         <div>
           <label class="form-label">Upload AADHAR</label>
+          &nbsp;&nbsp;
           <input
             type="file"
             accept="image/png, image/jpeg"
@@ -63,6 +71,7 @@
         </div>
         <div>
           <label class="form-label">Enter Answer</label>
+          &nbsp;&nbsp;
           <input type="text" [(ngModel)]="updateCustomerRequest.secretAnswer" />
         </div>
         <div>

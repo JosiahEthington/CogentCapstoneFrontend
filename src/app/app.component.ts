@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AuthService } from './_services/auth.service';
 import { TokenStorageService } from './_services/token-storage.service';
 
 @Component({
@@ -15,22 +16,43 @@ export class AppComponent implements OnInit {
   isStaff = false;
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) {}
+  constructor(
+    private tokenStorageService: TokenStorageService,
+    private authService: AuthService,
+    private ref: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
+    const user = this.tokenStorageService.getUser();
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.isAdmin = this.roles.includes('ROLE_ADMIN');
       this.isStaff = this.roles.includes('ROLE_STAFF');
       this.isCustomer = this.roles.includes('ROLE_CUSTOMER');
-      this.isAdmin = this.roles.includes('ROLE_ADMIN');
-
-      this.username = user.username;
     }
+    this.authService.getUserDetails().subscribe((jwtToken) => {
+      if (jwtToken == null) {
+        console.log('in subscribe null');
+        this.roles = [];
+        this.isLoggedIn = false;
+        this.isStaff = false;
+        this.isCustomer = false;
+        this.isAdmin = false;
+        this.username = '';
+      } else {
+        this.isLoggedIn = true;
+        console.log('in subscribe');
+        console.log(jwtToken);
+        this.roles = jwtToken.roles;
+        console.log(jwtToken.roles);
+        this.isStaff = jwtToken.roles.includes('ROLE_STAFF');
+        this.isCustomer = jwtToken.roles.includes('ROLE_CUSTOMER');
+        this.isAdmin = jwtToken.roles.includes('ROLE_ADMIN');
+        this.username = jwtToken.username;
+      }
+    });
+    this.ref.detectChanges();
   }
   title = 'BankFrontend';
   today: Date = new Date();

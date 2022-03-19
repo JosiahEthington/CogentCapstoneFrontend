@@ -19,6 +19,7 @@ import { StaffLoginPageComponent } from './staff-login-page/staff-login-page.com
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { StaffDashboardComponent } from './staff-dashboard/staff-dashboard.component';
 import { StaffByAccountNumberComponent } from './staff-by-account-number/staff-by-account-number.component';
+import { CustomerViewStatementComponent } from './customer-view-statement/customer-view-statement.component';
 const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'register', component: RegistrationPageComponent },
@@ -63,6 +64,7 @@ const routes: Routes = [
   { path: 'staffLogin', component: StaffLoginPageComponent },
   { path: 'staffDashboard', component: StaffDashboardComponent },
   { path: 'staffByAccountNumber', component: StaffByAccountNumberComponent },
+  // { path: 'customerViewStatement', component: CustomerViewStatementComponent },
 ];
 
 @NgModule({
