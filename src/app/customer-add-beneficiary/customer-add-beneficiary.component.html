@@ -2,6 +2,15 @@
   <p><b>Add Beneficiary</b></p>
   <p></p>
   <div class="mb-3">
+    <label class="form-label">Name this external account:</label>&nbsp;
+    <input
+      type="text"
+      name="name"
+      [(ngModel)]="addBeneficiaryRequest.name"
+      placeholder="Nickname"
+      size="40%"
+    />
+    <br />
     <label class="form-label">Enter Account Number</label>&nbsp;
     <input
       name="account"
@@ -15,6 +24,7 @@
     <input
       type="number"
       name="confirm"
+      [(ngModel)]="confirmAccountNumber"
       placeholder="Confirm Account Number"
       size="40%"
     />

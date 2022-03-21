@@ -64,11 +64,13 @@
   <div class="form-group">
     <input
       type="password"
-      name="password"
-      placeholder="Enter Secure Password"
-      [(ngModel)]="createStaffRequest.staffPassword"
+      name="ConfirmedPassword"
+      placeholder="Re Enter Password"
+      [(ngModel)]="confirmedPassword"
     />
   </div>
   <br />
-  <button type="submit" class="btn btn-primary">Create</button>
+  <button type="submit" (click)="createStaff()" class="btn btn-primary">
+    Create
+  </button>
 </form>

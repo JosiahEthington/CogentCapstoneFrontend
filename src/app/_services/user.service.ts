@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
+import { SetEnabledRequest } from '../models/request/SetEnabledRequest';
 
 const API_URL = 'http://localhost:9015/api/';
 
@@ -12,9 +13,9 @@ export class UserService {
   //--------------------------------CustomerController--------------------------------
   //CustomerController createAccount
   postAddAccount(customerId: number, body: any): Observable<any> {
-    console.log('Body of add Acount request: ');
-    console.log(body);
-    console.log(JSON.stringify(body));
+    //console.log('Body of add Acount request: ');
+    //console.log(body);
+    //console.log(JSON.stringify(body));
     return this.http.post(
       `${API_URL + 'customer'}/${customerId}/account`,
       body
@@ -30,6 +31,15 @@ export class UserService {
     return this.http.put(
       `${API_URL + 'customer/' + customerId + '/account/' + accountNumber}`,
       value
+    );
+  }
+
+  setEnabled(setEnabledRequest: SetEnabledRequest): Observable<any> {
+    console.log('Setting Enabled: ' + setEnabledRequest.status);
+    return this.http.put(
+      `${API_URL + 'customer/accountStatus'}`,
+      setEnabledRequest,
+      { responseType: 'text' }
     );
   }
 
@@ -57,7 +67,7 @@ export class UserService {
 
   //CustomerController updateCustomer
   updateCustomer(customerId: number, body: any): Observable<any> {
-    return this.http.get(API_URL + 'customer/' + customerId, body);
+    return this.http.put(API_URL + 'customer/' + customerId, body);
   }
 
   //CustomerController addBeneficiary
@@ -72,6 +82,11 @@ export class UserService {
   //CustomerController getBeneficiaries
   getListBeneficiary(customerId: number): Observable<any> {
     return this.http.get(API_URL + 'customer/' + customerId + '/beneficiary');
+  }
+  getActiveBeneficiaries(customerId: number): Observable<any> {
+    return this.http.get(
+      API_URL + 'customer/' + customerId + '/activeBeneficiary'
+    );
   }
 
   //CustomerController deleteBeneficiary
@@ -93,7 +108,13 @@ export class UserService {
     });
   }
 
+  // @GetMapping("/account/{accountNo}")
+  // public ResponseEntity<?> getAccountDetails(@PathVariable("accountNo") Long accountNo) {
+  // 	return ResponseEntity.ok(staffService.getAccountDetails(accountNo));
+  // }
+
   staffGetAccountDetails(accountNumber: number): Observable<any> {
+    //console.log(`${API_URL + 'staff/account/' + accountNumber}`);
     return this.http.get(`${API_URL + 'staff/account/' + accountNumber}`);
   }
 
@@ -122,12 +143,9 @@ export class UserService {
   // public ResponseEntity<?> approveAccount(@RequestBody ApproveAccountRequest request) {
   // 	return ResponseEntity.ok(staffService.approveAccount(request));
   // }
-  //!-------------------------
-  // !!!!!!!!! Is this method duplicate?
-  //!-------------------------
-  // staffApproveAccount(body: any): Observable<any> {
-  //   return this.http.post(`${API_URL + 'staff/accounts/approve'}`, body);
-  // }
+  staffApproveListOfAccount(body: any): Observable<any> {
+    return this.http.put(`${API_URL + 'staff/accounts/approve'}`, body);
+  }
 
   // @GetMapping("/customer")
   // public ResponseEntity<?> listCustomers() {
@@ -168,14 +186,14 @@ export class UserService {
   //    return ResponseEntity.ok(adminService.getAllStaff());
   //  }
   adminListStaff(): Observable<any> {
-    return this.http.get(`${API_URL + 'staff'}`);
+    return this.http.get(`${API_URL + 'admin/staff'}`);
   }
   //  @PutMapping("/staff")
   //  public ResponseEntity<?> setStaffEnabled(@RequestBody SetEnabledRequest request) {
   //    return ResponseEntity.ok(adminService.setEnabled(request));
   //  }
   adminSetStaffEnabled(body: any): Observable<any> {
-    return this.http.put(`${API_URL + 'staff'}`, body, {
+    return this.http.put(`${API_URL + 'admin/staff'}`, body, {
       responseType: 'text',
     });
   }

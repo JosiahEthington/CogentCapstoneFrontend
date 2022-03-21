@@ -32,6 +32,7 @@ export class CustomerAccountStatementComponent implements OnInit {
       .subscribe((data) => {
         this.accountDetailsResponse = data;
         this.accountDetailsResponse.transactions.forEach((element) => {
+          console.log(element.fromAccountNum);
           if (element.fromAccountNum == this.accountNumber) {
             element.transactionType = 'Cr';
           } else {

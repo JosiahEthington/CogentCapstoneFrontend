@@ -18,27 +18,40 @@ export class LoginPageComponent implements OnInit {
   isLoggedIn = false;
   customerId = 1;
   isLoginFailed = false;
-  errorMessage = '';
+  errorMessage = 'Login Failed';
   roles: string[] = [];
   ngOnInit(): void {}
 
   loginRequest: LoginRequest = new LoginRequest();
   customerLogin(): void {
     console.log('Signing in');
+    if (this.isLoginFailed) {
+      alert(this.errorMessage);
+      this.isLoginFailed = false;
+    }
     const { username, password } = this.loginRequest;
     this.authService.customerLogin(username, password).subscribe((data) => {
-      console.log('Token:');
-      console.log(data.token);
-      console.log('User: ');
+      console.log('data: ');
       console.log(data);
-      this.customerId = data.id;
-      this.tokenStorage.saveToken(data.token);
-      this.tokenStorage.saveUser(data);
 
-      this.isLoginFailed = false;
-      this.isLoggedIn = true;
+      this.customerId = data.id;
+      this.tokenStorage.saveUser(data);
       this.roles = this.tokenStorage.getUser().roles;
-      this.router.navigate(['customerDashboard']);
+      //if(data.status ==)
+      if (this.roles.includes('ROLE_CUSTOMER')) {
+        this.tokenStorage.saveToken(data.token);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+
+        this.router.navigate(['/customerDashboard']).then(() => {
+          window.location.reload();
+        });
+      } else {
+        this.tokenStorage.signOut();
+        this.isLoggedIn = false;
+        this.isLoginFailed = true;
+        alert('This user is not a customer, please use Staff login.');
+      }
     });
   }
   reloadPage(): void {

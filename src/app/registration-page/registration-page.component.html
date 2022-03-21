@@ -23,28 +23,72 @@
     </ul>
   </div>
 </nav>
-<form>
-  <label>Username: </label>
-  <input
-    type="text"
-    name="username"
-    placeholder="Username"
-    [(ngModel)]="signUpRequest.username"
-  /><br />
-  <label>Full Name: </label>
-  <input
-    type="text"
-    name="fullName"
-    placeholder="Full Name"
-    [(ngModel)]="signUpRequest.fullname"
-  /><br />
-  <label>Password: </label>
-  <input
-    type="password"
-    name="password"
-    placeholder="Password"
-    [(ngModel)]="signUpRequest.password"
-  /><br />
-  <input type="button" value="Register" (click)="customerSignUp()" /><br />
-</form>
-<a href="/">Existing account? Login</a>
+<div class="card">
+  <form>
+    <table>
+      <tr>
+        <td>
+          <label>Username: </label>
+        </td>
+        <td>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            [(ngModel)]="signUpRequest.username"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Full Name: </label>
+        </td>
+        <td>
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Full Name"
+            [(ngModel)]="signUpRequest.fullname"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Password: </label>
+        </td>
+        <td>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="signUpRequest.password"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Confirm Password: </label>
+        </td>
+        <td>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            [(ngModel)]="confirmPassword"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input
+            type="button"
+            value="Register"
+            (click)="customerSignUp()"
+          /><br />
+        </td>
+      </tr>
+    </table>
+  </form>
+  <a href="/" align="left">Existing account? Login</a>
+</div>

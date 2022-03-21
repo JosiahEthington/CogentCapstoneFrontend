@@ -21,11 +21,26 @@ export class CustomerAddBeneficiaryComponent implements OnInit {
     this.customerId = this.tokenStorageService.getUser().id;
   }
   addBeneficiaryRequest: AddBeneficiaryRequest = new AddBeneficiaryRequest();
+  confirmAccountNumber: any = 0;
 
-  onSubmit(): void {
-    this.userService
-      .postAddBeneficiary(this.customerId, this.addBeneficiaryRequest)
-      .subscribe();
-    this.router.navigate(['/customerRemoveBeneficiary']);
+  async onSubmit(): Promise<void> {
+    if (this.confirmAccountNumber != this.addBeneficiaryRequest.accountNumber) {
+      alert('Accounts dont match');
+      console.log(
+        this.confirmAccountNumber +
+          ' : ' +
+          this.addBeneficiaryRequest.accountNumber
+      );
+      //this.confirmAccountNumber.setCustomValidity('Accounts dont match');
+    } else {
+      this.userService
+        .postAddBeneficiary(this.customerId, this.addBeneficiaryRequest)
+        .subscribe();
+      await new Promise((r) => setTimeout(r, 500));
+
+      this.router.navigate(['/customerRemoveBeneficiary']).then(() => {
+        window.location.reload();
+      });
+    }
   }
 }

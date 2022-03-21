@@ -30,15 +30,20 @@ export class CustomerTransferComponent implements OnInit {
       this.accounts = data;
     });
 
-    this.userService.getListBeneficiary(this.customerId).subscribe((data) => {
-      this.beneficiaries = data;
-    });
+    this.userService
+      .getActiveBeneficiaries(this.customerId)
+      .subscribe((data) => {
+        this.beneficiaries = data;
+      });
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     console.log('From: ' + this.transferRequest.fromAccount);
     console.log('Ref: ' + this.transferRequest.reason);
     this.userService.transferFunds(this.transferRequest).subscribe();
-    this.router.navigate(['/customerDashboard']);
+    await new Promise((r) => setTimeout(r, 500));
+    this.router.navigate(['/customerDashboard']).then(() => {
+      window.location.reload();
+    });
   }
 }

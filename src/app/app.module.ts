@@ -27,7 +27,7 @@ import { UpdatePasswordComponent } from './update-password/update-password.compo
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { StaffDashboardComponent } from './staff-dashboard/staff-dashboard.component';
 import { StaffByAccountNumberComponent } from './staff-by-account-number/staff-by-account-number.component';
-import { CustomerViewStatementComponent } from './customer-view-statement/customer-view-statement.component';
+import { CallbackPipe } from './callback.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { CustomerViewStatementComponent } from './customer-view-statement/custom
     UpdatePasswordComponent,
     StaffDashboardComponent,
     StaffByAccountNumberComponent,
-    CustomerViewStatementComponent,
+    CallbackPipe,
   ],
   imports: [
     BrowserModule,

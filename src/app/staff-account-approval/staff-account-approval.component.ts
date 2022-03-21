@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApproveAccountRequest } from '../models/request/ApproveAccountRequests';
+import { ApproveAccountRequest } from '../models/request/ApproveAccountRequest';
 import { AccountApprovalSummaryResponse } from '../models/response/AccountApprovalSummaryResponse';
-import { AccountDetailsStaffResponse } from '../models/response/AccountDetailsStaffResponse';
 import { AccountSummaryResponse } from '../models/response/AccountSummaryResponse';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { UserService } from '../_services/user.service';
@@ -14,13 +13,7 @@ import { UserService } from '../_services/user.service';
 export class StaffAccountApprovalComponent implements OnInit {
   currentUser: any;
 
-  accountApprovalSummaryResponse: AccountApprovalSummaryResponse[] = [
-    new AccountApprovalSummaryResponse(),
-  ];
-
-  accountSummaryResponse: AccountSummaryResponse[] = [
-    new AccountSummaryResponse(),
-  ];
+  accountApprovalSummaryResponse: AccountApprovalSummaryResponse[] = [];
 
   constructor(
     private token: TokenStorageService,
@@ -29,23 +22,19 @@ export class StaffAccountApprovalComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
-    this.userService.getDashboard(this.currentUser.id).subscribe((data) => {
-      this.accountSummaryResponse = data;
+    this.userService.staffGetUnapprovedAccounts().subscribe((data) => {
+      this.accountApprovalSummaryResponse = data;
     });
   }
 
   approveAccountRequest: ApproveAccountRequest = new ApproveAccountRequest();
 
-  onDelete(AccountNumber: number): void {
-    this.accountApprovalSummaryResponse[0].approved = 'yes';
+  async onDelete(AccountNumber: number): Promise<void> {
+    this.approveAccountRequest.accountNumber = AccountNumber;
     this.userService
-      .staffApproveAccount(
-        this.currentUser.id,
-        AccountNumber,
-        this.approveAccountRequest
-      )
-      .subscribe((data) => {
-        this.accountApprovalSummaryResponse = data;
-      });
+      .staffApproveListOfAccount(this.approveAccountRequest)
+      .subscribe();
+    await new Promise((r) => setTimeout(r, 500));
+    window.location.reload();
   }
 }

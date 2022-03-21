@@ -27,10 +27,10 @@ export class StaffLoginPageComponent implements OnInit {
     console.log('Staff Signing in');
     const { username, password } = this.loginRequest;
     this.authService.staffLogin(username, password).subscribe((data) => {
-      console.log('Token:');
-      console.log(data.token);
-      console.log('User: ');
-      console.log(data);
+      //console.log('Token:');
+      //console.log(data.token);
+      //console.log('User: ');
+      //console.log(data);
       this.staffId = data.id;
       this.tokenStorage.saveToken(data.token);
       this.tokenStorage.saveUser(data);
@@ -38,8 +38,10 @@ export class StaffLoginPageComponent implements OnInit {
       this.isLoginFailed = false;
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
-      console.log(this.roles.length);
-      this.router.navigate(['staffDashboard']);
+      //console.log(this.roles.length);
+      this.router.navigate(['staffDashboard']).then(() => {
+        window.location.reload();
+      });
     });
   }
   reloadPage(): void {

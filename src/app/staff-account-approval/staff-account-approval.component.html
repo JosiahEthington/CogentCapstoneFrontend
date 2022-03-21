@@ -66,14 +66,14 @@
   </thead>
   <tbody>
     <tr *ngFor="let accountApprovalSummary of accountApprovalSummaryResponse">
-      <td>{{ accountApprovalSummary.accountNo }}</td>
+      <td>{{ accountApprovalSummary.accNo }}</td>
       <td>{{ accountApprovalSummary.customerName }}</td>
-      <td>{{ accountApprovalSummary.accountType }}</td>
+      <td>{{ accountApprovalSummary.accType }}</td>
       <td>{{ accountApprovalSummary.dateCreated | date: "M-d-yyyy" }}</td>
       <td>
         <button
           type="button"
-          (click)="onDelete(accountApprovalSummary.accountNo)"
+          (click)="onDelete(accountApprovalSummary.accNo)"
           class="btn btn-danger"
         >
           Approve

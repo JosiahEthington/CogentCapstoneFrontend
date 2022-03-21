@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AccountDetailsStaffResponse } from '../models/response/AccountDetailsStaffResponse';
-import { TokenStorageService } from '../_services/token-storage.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-staff-by-account-number',
@@ -10,30 +12,34 @@ import { TokenStorageService } from '../_services/token-storage.service';
 export class StaffByAccountNumberComponent implements OnInit {
   currentUser: any;
 
-  accountDetailStaffResponse: AccountDetailsStaffResponse[] = [
-    new AccountDetailsStaffResponse(),
-  ];
+  // accountDetailStaffResponse: AccountDetailsStaffResponse[] = [
+  //   new AccountDetailsStaffResponse(),
+  // ];
 
-  constructor(private token: TokenStorageService) {}
+  accountDetailStaffResponse: AccountDetailsStaffResponse =
+    new AccountDetailsStaffResponse();
+  accounts: any[] = [];
 
-  ngOnInit(): void {
-    this.currentUser = this.token.getUser();
-    this.accountDetailStaffResponse[0].accountNumber = 44332211;
-    this.accountDetailStaffResponse[0].balance = 123235;
-    this.accountDetailStaffResponse[0].customerName = 'John Doe';
-    this.accountDetailStaffResponse[0].transactions = [
-      {
-        date: new Date(2022, 1, 1),
-        reference: '123-testing',
-        amount: 500,
-        accountType: 'Cr',
-      },
-      {
-        date: new Date(2022, 2, 1),
-        reference: '222-testing',
-        amount: 2000,
-        accountType: 'DB',
-      },
-    ];
+  constructor(
+    private userService: UserService,
+    private ref: ChangeDetectorRef
+  ) {}
+  accountNumber: any;
+  ngOnInit(): void {}
+
+  async onSubmit(): Promise<void> {
+    this.userService
+      .staffGetAccountDetails(this.accountNumber)
+      .subscribe((data) => {
+        this.accountDetailStaffResponse = data;
+        this.accountDetailStaffResponse.transactions.forEach((element) => {
+          if (element.fromAccountNum == this.accountNumber) {
+            element.transactionType = 'Cr';
+          } else {
+            element.transactionType = 'Db';
+          }
+        });
+      });
+    //await new Promise((r) => setTimeout(r, 500));
   }
 }

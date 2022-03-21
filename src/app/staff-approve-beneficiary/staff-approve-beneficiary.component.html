@@ -1,4 +1,4 @@
-<!-- <nav class="nav nav-pills flex-column flex-sm-row">
+<nav class="nav nav-pills flex-column flex-sm-row">
   <a class="flex-sm-fill text-sm-center nav-link" href="/staffByAccountNumber"
     >By Account Number</a
   >
@@ -14,30 +14,37 @@
     >Enable / Block Customer</a
   >
 </nav>
-<br /> -->
+<br />
 <table class="table caption-top table-striped table-dark">
   <caption class="text-center">
     Newly Added Beneficiary
   </caption>
   <thead style="color: #0000ff">
-    <td>From Customer Name-CustomerId</td>
-    <td>Beneficiary Name - AcNo</td>
+    <td>Beneficiary Account Number</td>
+    <td>Beneficiary Id - AcNo</td>
     <td>Beneficiary Added Date</td>
     <td>Approve</td>
   </thead>
   <tbody>
-    <tr *ngFor="let approveBeneficiary of approveBeneficiaries">
-      <td>{{ approveBeneficiary.fromCustomer }}</td>
+    <tr *ngFor="let unapproveBeneficiary of unapprovedBeneficiaries">
+      <!-- <td>{{ approveBeneficiary.fromCustomer }}</td>
       <td>{{ approveBeneficiary.beneficiaryAccount }}</td>
       <td>
         {{ approveBeneficiary.beneficiaryAddedDate | date: "M-d-yyyy" }}
+        Note: 0 is Jan and 11 is the December
+      </td> -->
+      <td>{{ unapproveBeneficiary.accountNo }}</td>
+      <td>{{ unapproveBeneficiary.beneficiaryId }}</td>
+      <td>
+        {{ unapproveBeneficiary.addedDate | date: "M-d-yyyy" }}
         <!-- Note: 0 is Jan and 11 is the December -->
       </td>
-      <td *ngIf="approveBeneficiary.approved == 'yes'">
-        <span style="background-color: #00ff00">Approved</span>
-      </td>
-      <td *ngIf="approveBeneficiary.approved == 'no'">
-        <button type="button" (click)="onSubmit()" class="btn btn-danger">
+      <td>
+        <button
+          type="button"
+          (click)="onSubmit(unapproveBeneficiary)"
+          class="btn btn-danger"
+        >
           Approve
         </button>
       </td>

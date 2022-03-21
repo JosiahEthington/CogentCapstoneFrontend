@@ -14,6 +14,9 @@
   </ul>
   <ul class="navbar-nav ml-auto" *ngIf="isStaff">
     <li class="nav-item">
+      <a class="nav-link" routerLink="/staffAdjustAccount">Transfer</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" routerLink="/staffByAccountNumber"
         >By Account Number</a
       >
@@ -68,35 +71,74 @@
     </div>
   </ul>
 </nav>
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="isAdmin">
+  <ul class="navbar-nav mr-auto" routerLinkActive="active">
+    <li class="nav-item active">
+      <a class="nav-link" routerLink="/adminCreateStaff">Create Staff</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" routerLink="/adminEnableStaff">View Staff</a>
+    </li>
+  </ul>
+</nav>
 
 <!-- Sidebar -->
 <div class="sidebar" style="width: 25%" *ngIf="isCustomer">
-  <div>
-    <a routerLink="/customerAddAccount" class="sidebar-item">Create Account</a>
-  </div>
-  <div>
-    <a routerLink="/customerAddBeneficiary" class="sidebar-item"
-      >Add Beneficiary</a
-    >
-  </div>
-  <div>
-    <a routerLink="/customerRemoveBeneficiary" class="sidebar-item"
-      >Remove Beneficiary</a
-    >
-  </div>
-  <div>
-    <a routerLink="/customerTransfer" class="sidebar-item">Transfer Money</a>
-  </div>
-  <div>
-    <a routerLink="/customerDashboard" class="sidebar-item">View Statement</a>
-  </div>
+  <ul class="nav flex-column d-flex sidebar2 h-100">
+    <div>
+      <li class="nav-item">
+        <a routerLink="/customerAddAccount" class="sidebar-item"
+          >Create Account</a
+        >
+      </li>
+    </div>
+    <div>
+      <li class="nav-item">
+        <a routerLink="/customerAddBeneficiary" class="sidebar-item"
+          >Add Beneficiary</a
+        >
+      </li>
+    </div>
+    <div>
+      <li class="nav-item">
+        <a routerLink="/customerRemoveBeneficiary" class="sidebar-item"
+          >Remove Beneficiary</a
+        >
+      </li>
+    </div>
+    <div>
+      <li class="nav-item">
+        <a routerLink="/customerTransfer" class="sidebar-item"
+          >Transfer Money</a
+        >
+      </li>
+    </div>
+    <div>
+      <li class="nav-item">
+        <a routerLink="/customerDashboard" class="sidebar-item"
+          >View Statement</a
+        >
+      </li>
+    </div>
+  </ul>
 </div>
-
-<main role="main" class="container" style="margin-left: 25%">
-  <div class="starter-template">
-    <router-outlet></router-outlet>
-  </div>
-</main>
-<div class="text-center fixed-bottom">
-  &copy; {{ today | date: "yyyy" }} &middot; All rights reserved
+<div *ngIf="isCustomer" style="margin-left: 25%">
+  <main role="main" class="container">
+    <div class="starter-template">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="text-center fixed-bottom">
+      &copy; {{ today | date: "yyyy" }} &middot; All rights reserved
+    </div>
+  </main>
+</div>
+<div *ngIf="!isCustomer">
+  <main role="main" class="container">
+    <div class="starter-template">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="text-center fixed-bottom">
+      &copy; {{ today | date: "yyyy" }} &middot; All rights reserved
+    </div>
+  </main>
 </div>

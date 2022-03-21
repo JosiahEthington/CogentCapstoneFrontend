@@ -9,6 +9,9 @@
         <td>Account Type</td>
         <td>Select</td>
       </thead>
+      <tr *ngIf="accounts.length < 1">
+        <td colspan="4">No Accounts to Display</td>
+      </tr>
       <tr *ngFor="let account of accounts">
         <td>{{ account.accountNumber }}</td>
         <td>{{ account.balance }}</td>
@@ -40,8 +43,15 @@
             *ngFor="let beneficiary of beneficiaries"
             [value]="beneficiary.beneficiaryAccountNo"
           >
-            {{ beneficiary.beneficiaryName }}
+            {{ beneficiary.beneficiaryName }} Account No :
             {{ beneficiary.beneficiaryAccountNo }}
+          </option>
+          <option
+            *ngFor="let account of accounts"
+            [value]="account.accountNumber"
+          >
+            My {{ account.accountType }}
+            {{ account.accountNumber }}
           </option>
         </select>
         <br />

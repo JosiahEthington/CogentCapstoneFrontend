@@ -13,19 +13,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <!-- <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/staffApproveBeneficiary"
-          >Approve Beneficiary</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/staffCustomerEnable">
-          Enable / Block Customer
-        </a>
-      </li>
-    </ul> -->
-<!-- <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/staffAdjustAccount"> Transfer </a>
       </li>
@@ -66,22 +54,27 @@
 <form>
   <div class="input-group">
     <input
-      type="text"
-      class="form-control mr-sm-2"
+      type="number"
+      class="form-control"
       placeholder="Enter Account Number"
+      name="accountNumber"
+      [(ngModel)]="accountNumber"
     />
     <span class="input-group-btn">
       &nbsp; &nbsp; &nbsp; &nbsp;
-      <button type="submit" class="btn btn-primary mb-2">Go</button>
+      <button type="submit" (click)="onSubmit()" class="btn btn-primary mb-2">
+        Go
+      </button>
     </span>
   </div>
   <!-- /input-group -->
 </form>
 
 <br />
-Ac No: {{ accountDetailStaffResponse[0].accountNumber }} &nbsp; &nbsp; Name:
-{{ this.accountDetailStaffResponse[0].customerName }} &nbsp; &nbsp; Balance:
-{{ this.accountDetailStaffResponse[0].balance }}
+
+Ac No: {{ accountDetailStaffResponse.accountNumber }} &nbsp; &nbsp; Name:
+{{ accountDetailStaffResponse.customerName }} &nbsp; &nbsp; Balance:
+{{ accountDetailStaffResponse.balance }}
 <table class="table caption-top table-striped table-dark">
   <caption class="text-center">
     Account Details
@@ -93,13 +86,11 @@ Ac No: {{ accountDetailStaffResponse[0].accountNumber }} &nbsp; &nbsp; Name:
     <td>Cr/Db</td>
   </thead>
   <tbody>
-    <tr
-      *ngFor="let accountDetail of accountDetailStaffResponse[0].transactions"
-    >
-      <td>{{ accountDetail.date | date: "M-d-yyyy" }}</td>
-      <td>{{ accountDetail.reference }}</td>
-      <td>{{ accountDetail.amount }}</td>
-      <td>{{ accountDetail.accountType }}</td>
+    <tr *ngFor="let transaction of accountDetailStaffResponse.transactions">
+      <td>{{ transaction.dateTime | date: "M-d-yyyy" }}</td>
+      <td>{{ transaction.reference }}</td>
+      <td>{{ transaction.amount }}</td>
+      <td>{{ transaction.transactionType }}</td>
     </tr>
   </tbody>
 </table>

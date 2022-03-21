@@ -8,31 +8,48 @@
           &nbsp;&nbsp;
           <input
             type="number"
-            [(ngModel)]="updateCustomerResponse.customerId"
+            name="customerId"
+            [(ngModel)]="customerId"
             readonly
           />
         </div>
         <div>
           <label class="form-label">FullName</label>
           &nbsp;&nbsp;
-          <input type="text" [(ngModel)]="updateCustomerRequest.fullname" />
+          <input
+            type="text"
+            name="fullname"
+            [(ngModel)]="updateCustomerRequest.fullname"
+          />
         </div>
         <div>
           <label class="form-label">Phone</label>
           &nbsp;&nbsp;
-          <input type="number" [(ngModel)]="updateCustomerRequest.phone" />
+          <input
+            type="number"
+            name="phone"
+            [(ngModel)]="updateCustomerRequest.phone"
+          />
         </div>
         <div>
           <label class="form-label">PAN</label>
           &nbsp;&nbsp;
-          <input type="number" [(ngModel)]="updateCustomerRequest.pan" />
+          <input
+            type="number"
+            name="pan"
+            [(ngModel)]="updateCustomerRequest.pan"
+          />
         </div>
         <div>
           <label class="form-label">AADHAR</label>
           &nbsp;&nbsp;
-          <input type="number" [(ngModel)]="updateCustomerRequest.aadhar" />
+          <input
+            type="number"
+            name="aadhar"
+            [(ngModel)]="updateCustomerRequest.aadhar"
+          />
         </div>
-        <div>
+        <!-- <div>
           <label class="form-label">Upload PAN</label>
           &nbsp;&nbsp;
           <input
@@ -49,34 +66,34 @@
             accept="image/png, image/jpeg"
             [(ngModel)]="updateCustomerRequest.aadharImage"
           />
-        </div>
+        </div> -->
         <div>
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+          <select
+            class="form-select"
+            [(ngModel)]="updateCustomerResponse.secretQuestion"
+            name="question"
+          >
+            <option
+              *ngFor="let question of securityQuestions"
+              [value]="question"
             >
-              Select Security Question
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <input
-                type="text"
-                [(ngModel)]="updateCustomerRequest.secretQuestion"
-              />
-            </div>
-          </div>
+              {{ question }}
+            </option>
+          </select>
         </div>
         <div>
           <label class="form-label">Enter Answer</label>
           &nbsp;&nbsp;
-          <input type="text" [(ngModel)]="updateCustomerRequest.secretAnswer" />
+          <input
+            type="text"
+            name="answer"
+            [(ngModel)]="updateCustomerRequest.secretAnswer"
+          />
         </div>
         <div>
           <button
             type="button"
+            name="updateButton"
             class="btn btn-danger"
             (click)="updateCustomer()"
           >

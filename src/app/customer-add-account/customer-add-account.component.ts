@@ -23,11 +23,15 @@ export class CustomerAddAccountComponent implements OnInit {
   }
   createAccountRequest: CreateAccountRequest = new CreateAccountRequest();
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     console.log('Form submitted');
     this.userService
       .postAddAccount(this.customerId, this.createAccountRequest)
       .subscribe();
-    this.router.navigate(['customerDashboard']);
+    await new Promise((r) => setTimeout(r, 500));
+
+    this.router.navigate(['customerDashboard']).then(() => {
+      window.location.reload();
+    });
   }
 }

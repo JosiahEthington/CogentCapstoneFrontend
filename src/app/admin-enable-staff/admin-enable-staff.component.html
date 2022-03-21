@@ -35,7 +35,7 @@
 ​
 <table class="table caption-top table-striped table-dark">
   <caption class="text-center">
-    Enable Disable Customer
+    Enable Disable Staff
   </caption>
   <thead>
     <td>Staff Name</td>
@@ -44,14 +44,21 @@
   </thead>
   <tbody>
     <tr *ngFor="let staff of staffs">
-      <td>{{ staff.staffName }}</td>
-      <td>{{ staff.staffUserName }}</td>
-      <td>
-        <label class="switch">
-          <input type="checkbox" checked id="togBtn" />
-          <div class="slider round"></div>
-        </label>
-      </td>
+      <div *ngIf="!(staff.username == 'admin@admin.com')">
+        <td>{{ staff.fullname }}</td>
+        <td>{{ staff.username }}</td>
+        <td>
+          <label class="switch">
+            <input
+              type="checkbox"
+              (click)="toggleEnabled(staff.id, staff.status)"
+              [checked]="staff.status"
+              id="togBtn"
+            />
+            <div class="slider round"></div>
+          </label>
+        </td>
+      </div>
     </tr>
   </tbody>
 </table>

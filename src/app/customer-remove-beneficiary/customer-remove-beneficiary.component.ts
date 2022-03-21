@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SetEnabledRequest } from '../models/request/SetEnabledRequest';
 import { BeneficiarySummaryResponse } from '../models/response/BeneficiarySummaryResponse';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { UserService } from '../_services/user.service';
@@ -34,11 +35,14 @@ export class CustomerRemoveBeneficiaryComponent implements OnInit {
     this.currentUser = this.tokenStorageService.getUser();
   }
 
-  onDelete(beneficiaryId: number): void {
+  async onDelete(beneficiaryId: number): Promise<void> {
     console.log(beneficiaryId);
     this.userService
       .deleteRemoveBeneficiary(this.customerId, beneficiaryId)
       .subscribe();
+    await new Promise((r) => setTimeout(r, 500));
+
     window.location.reload();
   }
+  setEnabled: SetEnabledRequest = new SetEnabledRequest();
 }

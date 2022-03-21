@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import { SetEnabledRequest } from '../models/request/SetEnabledRequest';
+import { StaffSummaryResponse } from '../models/response/StaffSummaryResponse';
+import { User } from '../models/User';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-admin-enable-staff',
@@ -20,13 +23,20 @@ export class AdminEnableStaffComponent implements OnInit {
   //   // enableStaff: SetEnabledRequest = new SetEnabledRequest();
   // }
 
-  constructor() {}
+  constructor(private userService: UserService) {}
+  staffs: User[] = [];
+  ngOnInit(): void {
+    this.userService.adminListStaff().subscribe((data) => {
+      this.staffs = data;
+    });
+  }
 
-  ngOnInit(): void {}
-
-  staffs: any = [
-    { staffName: 'name1', staffUserName: 'usernmae1' },
-    { staffName: 'name2', staffUserName: 'usernmae2' },
-    { staffName: 'name3', staffUserName: 'usernmae3' },
-  ];
+  setEnabled: SetEnabledRequest = new SetEnabledRequest();
+  toggleEnabled(accountNumber: number, status: any): void {
+    console.log('Status: ' + status);
+    this.setEnabled.status = !status;
+    this.setEnabled.id = accountNumber;
+    this.userService.adminSetStaffEnabled(this.setEnabled).subscribe();
+    window.location.reload();
+  }
 }

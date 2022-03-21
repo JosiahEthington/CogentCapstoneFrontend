@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './_services/auth.service';
 import { TokenStorageService } from './_services/token-storage.service';
 
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
   constructor(
     private tokenStorageService: TokenStorageService,
     private authService: AuthService,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +61,6 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
+    this.router.navigate(['']);
   }
 }

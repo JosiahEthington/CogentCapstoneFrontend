@@ -1,5 +1,8 @@
 <div class="card card-container">
   <table>
+    <tr *ngIf="listOfAccounts.length < 1">
+      No Accounts to Display
+    </tr>
     <tr *ngFor="let account of listOfAccounts">
       <label>Account Type:</label
       >{{
@@ -14,8 +17,12 @@
       <br />
       <td>
         <label class="switch">
-          <input type="checkbox" checked id="togBtn" />
-
+          <input
+            type="checkbox"
+            (click)="toggleEnabled(account.accountNumber, account.status)"
+            [checked]="account.status"
+            id="togBtn"
+          />
           <div class="slider round"></div>
         </label>
       </td>

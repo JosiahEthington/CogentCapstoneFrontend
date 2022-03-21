@@ -6,4 +6,5 @@ export class User {
   fullname: string = '';
   password: string = '';
   roles: Role[] = [];
+  status: string = '';
 }
